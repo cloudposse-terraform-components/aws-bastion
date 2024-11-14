@@ -1,11 +1,7 @@
 # Upstream changes from _extends are only recognized when modifications are made to this file in the default branch.
 _extends: .github
 repository:
-  name: template
-  description: Template for Terraform Components
+  name: aws-bastion
+  description: This component is responsible for provisioning a generic Bastion host within an ASG with parameterized `user_data` and support for AWS SSM Session Manager for remote access with IAM authentication
   homepage: https://cloudposse.com/accelerate
   topics: terraform, terraform-component
-
-
-
-
