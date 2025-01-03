@@ -1,2 +1,2 @@
-    #cloud-config
-    ${ content }
+	#cloud-config
+	${ content }
