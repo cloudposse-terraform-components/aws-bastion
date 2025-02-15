@@ -28,15 +28,3 @@ spec:
         - "**/*.tftmpl"
         - "**/modules/**"
       excluded_paths: []
-
-    - component: "bastion"
-      source: "../../src"
-      targets:
-        - "components/terraform/bastion"
-      included_paths:
-        - "**/*.tf"
-        - "**/*.md"
-        - "**/*.tftmpl"
-        - "**/*"
-        - "**/modules/**"
-      excluded_paths: []
