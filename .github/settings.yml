@@ -5,3 +5,12 @@ repository:
   description: This component is responsible for provisioning a generic Bastion host within an ASG with parameterized `user_data` and support for AWS SSM Session Manager for remote access with IAM authentication
   homepage: https://cloudposse.com/accelerate
   topics: terraform, terraform-component
+
+
+
+
+
+
+
+
+
