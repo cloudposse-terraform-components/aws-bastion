@@ -1,0 +1,18 @@
+components:
+  terraform:
+    bastion/basic:
+      metadata:
+        component: target
+      vars:
+        enabled: true
+        name: bastion
+        image_container: cloudposse/geodesic:latest
+        image_repository: public.ecr.aws
+        associate_public_ip_address: true # deploy to public subnet and associate public IP with instance
+        instance_type: t2.micro
+        security_group_rules:
+          - type: "ingress"
+            from_port: 22
+            to_port: 22
+            protocol: tcp
+            cidr_blocks: ["0.0.0.0/0"]
