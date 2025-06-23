@@ -73,3 +73,9 @@ variable "image_container" {
   default     = ""
   description = "The image container to use in `container.sh`."
 }
+
+variable "vpc_component_name" {
+  type        = string
+  default     = "vpc"
+  description = "Name of the VPC component to look up via remote state"
+}
