@@ -2,8 +2,11 @@
 
 <!-- markdownlint-disable -->
 <a href="https://cpco.io/homepage"><img src="https://github.com/cloudposse-terraform-components/aws-bastion/blob/main/.github/banner.png?raw=true" alt="Project Banner"/></a><br/>
-    <p align="right">
-<a href="https://github.com/cloudposse-terraform-components/aws-bastion/releases/latest"><img src="https://img.shields.io/github/release/cloudposse-terraform-components/aws-bastion.svg?style=for-the-badge" alt="Latest Release"/></a><a href="https://slack.cloudposse.com"><img src="https://slack.cloudposse.com/for-the-badge.svg" alt="Slack Community"/></a></p>
+
+
+<p align="right"><a href="https://github.com/cloudposse-terraform-components/aws-bastion/releases/latest"><img src="https://img.shields.io/github/release/cloudposse-terraform-components/aws-bastion.svg?style=for-the-badge" alt="Latest Release"/></a><a href="https://slack.cloudposse.com"><img src="https://slack.cloudposse.com/for-the-badge.svg" alt="Slack Community"/></a><a href="https://cloudposse.com/support/"><img src="https://img.shields.io/badge/Get_Support-success.svg?style=for-the-badge" alt="Get Support"/></a>
+
+</p>
 <!-- markdownlint-restore -->
 
 <!--
@@ -27,16 +30,32 @@
 
 -->
 
-This component is responsible for provisioning a generic Bastion host within an ASG with parameterized `user_data` and
-support for AWS SSM Session Manager for remote access with IAM authentication.
+This component provisions a generic Bastion host within an Auto Scaling Group (ASG) with parameterized `user_data` and
+supports AWS SSM Session Manager for remote access with IAM authentication.
 
 If a special `container.sh` script is desired to run, set `container_enabled` to `true`, and set the `image_repository`
 and `image_container` variables.
 
-By default, this component acts as an "SSM Bastion", which is deployed to a private subnet and has SSM Enabled, allowing
+By default, this component acts as an "SSM Bastion", which is deployed to a private subnet and has SSM enabled, allowing
 access via the AWS Console, AWS CLI, or SSM Session tools such as [aws-gate](https://github.com/xen0l/aws-gate).
 Alternatively, this component can be used as a regular SSH Bastion, deployed to a public subnet with Security Group
-Rules allowing inbound traffic over port 22.
+rules allowing inbound traffic over port 22.
+
+
+> [!TIP]
+> #### 👽 Use Atmos with Terraform
+> Cloud Posse uses [`atmos`](https://atmos.tools) to easily orchestrate multiple environments using Terraform. <br/>
+> Works with [Github Actions](https://atmos.tools/integrations/github-actions/), [Atlantis](https://atmos.tools/integrations/atlantis), or [Spacelift](https://atmos.tools/integrations/spacelift).
+>
+> <details>
+> <summary><strong>Watch demo of using Atmos with Terraform</strong></summary>
+> <img src="https://github.com/cloudposse/atmos/blob/main/docs/demo.gif?raw=true"/><br/>
+> <i>Example of running <a href="https://atmos.tools"><code>atmos</code></a> to manage infrastructure from our <a href="https://atmos.tools/quick-start/">Quick Start</a> tutorial.</i>
+> </details>
+
+
+
+
 
 ## Usage
 
@@ -85,8 +104,20 @@ components:
             cidr_blocks: ["0.0.0.0/0"]
 ```
 
-<!-- prettier-ignore-start -->
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+> [!IMPORTANT]
+> In Cloud Posse's examples, we avoid pinning modules to specific versions to prevent discrepancies between the documentation
+> and the latest released versions. However, for your own projects, we strongly advise pinning each module to the exact version
+> you're using. This practice ensures the stability of your infrastructure. Additionally, we recommend implementing a systematic
+> approach for updating versions to avoid unexpected changes.
+
+
+
+
+
+
+
+
+<!-- markdownlint-disable -->
 ## Requirements
 
 | Name | Version |
@@ -165,30 +196,7 @@ components:
 | <a name="output_autoscaling_group_id"></a> [autoscaling\_group\_id](#output\_autoscaling\_group\_id) | The AutoScaling Group ID |
 | <a name="output_iam_instance_profile"></a> [iam\_instance\_profile](#output\_iam\_instance\_profile) | Name of AWS IAM Instance Profile |
 | <a name="output_security_group_id"></a> [security\_group\_id](#output\_security\_group\_id) | ID on the AWS Security Group associated with the ASG |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-<!-- prettier-ignore-end -->
-
-## References
-
-- [cloudposse/terraform-aws-components](https://github.com/cloudposse/terraform-aws-components/tree/main/modules/bastion) -
-  Cloud Posse's upstream component
-
-
-> [!TIP]
-> #### 👽 Use Atmos with Terraform
-> Cloud Posse uses [`atmos`](https://atmos.tools) to easily orchestrate multiple environments using Terraform. <br/>
-> Works with [Github Actions](https://atmos.tools/integrations/github-actions/), [Atlantis](https://atmos.tools/integrations/atlantis), or [Spacelift](https://atmos.tools/integrations/spacelift).
->
-> <details>
-> <summary><strong>Watch demo of using Atmos with Terraform</strong></summary>
-> <img src="https://github.com/cloudposse/atmos/blob/main/docs/demo.gif?raw=true"/><br/>
-> <i>Example of running <a href="https://atmos.tools"><code>atmos</code></a> to manage infrastructure from our <a href="https://atmos.tools/quick-start/">Quick Start</a> tutorial.</i>
-> </details>
-
-
-
-
-
+<!-- markdownlint-restore -->
 
 
 
@@ -201,6 +209,14 @@ Check out these related projects.
 
 - [Cloud Posse Terraform Modules](https://docs.cloudposse.com/modules/) - Our collection of reusable Terraform modules used by our reference architectures.
 - [Atmos](https://atmos.tools) - Atmos is like docker-compose but for your infrastructure
+
+
+## References
+
+For additional context, refer to some of these links.
+
+- [cloudposse-terraform-components](https://github.com/orgs/cloudposse-terraform-components/repositories) - Cloud Posse's upstream component
+
 
 
 > [!TIP]
@@ -266,6 +282,38 @@ In general, PRs are welcome. We follow the typical "fork-and-pull" Git workflow.
  6. Submit a **Pull Request** so that we can review your changes
 
 **NOTE:** Be sure to merge the latest changes from "upstream" before making a pull request!
+
+
+## Running Terraform Tests
+
+We use [Atmos](https://atmos.tools) to streamline how Terraform tests are run. It centralizes configuration and wraps common test workflows with easy-to-use commands.
+
+All tests are located in the [`test/`](test) folder.
+
+Under the hood, tests are powered by Terratest together with our internal [Test Helpers](https://github.com/cloudposse/test-helpers) library, providing robust infrastructure validation.
+
+Setup dependencies:
+- Install Atmos ([installation guide](https://atmos.tools/install/))
+- Install Go [1.24+ or newer](https://go.dev/doc/install)
+- Install Terraform or OpenTofu
+
+To run tests:
+
+- Run all tests:  
+  ```sh
+  atmos test run
+  ```
+- Clean up test artifacts:  
+  ```sh
+  atmos test clean
+  ```
+- Explore additional test options:  
+  ```sh
+  atmos test --help
+  ```
+The configuration for test commands is centrally managed. To review what's being imported, see the [`atmos.yaml`](https://raw.githubusercontent.com/cloudposse/.github/refs/heads/main/.github/atmos/terraform-module.yaml) file.
+
+Learn more about our [automated testing in our documentation](https://docs.cloudposse.com/community/contribute/automated-testing/) or implementing [custom commands](https://atmos.tools/core-concepts/custom-commands/) with atmos.
 
 ### 🌎 Slack Community
 
