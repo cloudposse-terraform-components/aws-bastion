@@ -49,7 +49,6 @@ components:
         image_container: infrastructure:latest
         image_repository: "111111111111.dkr.ecr.us-east-1.amazonaws.com/example/infrastructure"
         associate_public_ip_address: true # deploy to public subnet and associate public IP with instance
-        custom_bastion_hostname: bastion
         vanity_domain: example.com
         security_group_rules:
           - type: "ingress"
