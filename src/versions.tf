@@ -10,5 +10,9 @@ terraform {
       source  = "hashicorp/cloudinit"
       version = ">= 2.2"
     }
+    utils = {
+      source  = "cloudposse/utils"
+      version = ">= 2.0.0, < 3.0.0"
+    }
   }
 }
